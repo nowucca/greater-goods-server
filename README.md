@@ -1,9 +1,11 @@
 # Greater Goods Grocers
 
-This repository is a sample mini-ecommerce website 
-using guest-checkout to form the basis for a 10-12
-week course on how to build such sites from scratch.
+This repository is a sample mini-ecommerce api server 
+backing a grocery store called "Greater Goods Grocers".
 
-The technologies chosen will change over time, 
-and each branch is designed to represent a chunk
-of work to be completed in about a week.
+The technology stack is currently the Tomcat Servlet 
+Container, using the Jersey 2.2.x implemention of the JAX-RS
+specification (REST).
+
+This repository is being used as a model for teaching API
+server development.
