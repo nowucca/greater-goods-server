@@ -1,0 +1,15 @@
+# ignore intellij and java files
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.logs
+*.iml
+*.iws
+*.ipr
+.idea/
+.eclipse
+build/
+.gradle/
+out/

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <Resource name="jdbc/GreaterGoodsGrocers" auth="Container" type="javax.sql.DataSource"
+              maxTotal="5" maxIdle="2" maxWaitMillis="10000"
+              username="greatergoods" password="greatergoods" driverClassName="com.mysql.cj.jdbc.Driver"
+              removeAbandonedOnBorrow="true" removeAbandonedOnMaintenance="true"
+              removeAbandonedTimeout="60" logAbandoned="true" timeBetweenEvictionRunsMillis="300000"
+              url="jdbc:mysql://localhost:3306/greatergoods?serverTimezone=GMT"/>
+</Context>

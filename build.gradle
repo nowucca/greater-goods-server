@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+sourceCompatibility = 11
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    ext.tomcatVersion = '9.0.20'
+    ext.slf4jVersion = '1.7.26'
+    ext.jacksonVersion = '2.8.4'
+    ext.jerseyVersion = '2.25.1'
+    ext.guavaVersion = '28.0-jre'
+    ext.taglibVersion = '1.2.5'
+    ext.mySqlConnectorVersion = '8.0.16'
+
+
+    // Using sfl4j allows us to replace different loggers later, if desired
+    compile group: 'org.slf4j', name:'slf4j-api', version: "$slf4jVersion"
+
+    // slf4j is just a facade for loggers. To actually get logging to work, you need to
+    // tie it in with some actual implementation, e.g., log4j2, logback or slf4j-simple
+    compile group: 'org.slf4j', name:'slf4j-simple', version: "$slf4jVersion"
+
+    // These are for model object caching in the dao layer
+    compile group: 'com.google.guava', name: 'guava', version: "$guavaVersion"
+
+    // These declare dependencies on tomcat libraries, letting us use container code.
+    // These may be necessary if we want to run tomcat using a plugin in future.
+    providedCompile group: 'org.apache.tomcat', name: 'tomcat-catalina', version: "$tomcatVersion"
+
+    // These let us use the standard tag libraries in our JSP files.
+    compile group: 'org.apache.taglibs', name: 'taglibs-standard-spec', version: "$taglibVersion"
+    compile group: 'org.apache.taglibs', name: 'taglibs-standard-impl', version: "$taglibVersion"
+    compile group: 'mysql', name: 'mysql-connector-java', version: "$mySqlConnectorVersion"
+
+
+    ext.webDriverManagerVersion = '3.6.0'
+    ext.seleniumJavaVersion = '3.141.59'
+    ext.junitVersion = '4.12'
+
+    // These let us run tests using web driver / selenium testing.
+    testCompile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: "$webDriverManagerVersion"
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: "$seleniumJavaVersion"
+    testCompile group: 'junit', name: 'junit', version: "$junitVersion"
+
+    ext.jacksonVersion = '2.9.9'
+    ext.jerseyVersion = '2.28'
+
+    //Jersey / JSON REST service dependencies
+    compile group: 'com.fasterxml.jackson.core', name:'jackson-core', version:"$jacksonVersion"
+    compile group: 'com.fasterxml.jackson.core', name:'jackson-databind', version:"$jacksonVersion"
+	compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version:"$jacksonVersion"
+    compile group: 'org.glassfish.jersey.containers', name:'jersey-container-servlet', version:"$jerseyVersion"
+    compile group: 'org.glassfish.jersey.media', name:'jersey-media-json-jackson', version:"$jerseyVersion"
+    compile group: 'org.glassfish.jersey.core', name:'jersey-server', version:"$jerseyVersion"
+    compile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: "$jerseyVersion"
+    compile group: 'javax.ws.rs', name:'javax.ws.rs-api', version:'2.0.1'
+
+    // JAX-B dependencies for JDK 9+
+    implementation "javax.xml.bind:jaxb-api:2.2.11"
+    implementation "com.sun.xml.bind:jaxb-core:2.2.11"
+    implementation "com.sun.xml.bind:jaxb-impl:2.2.11"
+    implementation "javax.activation:activation:1.1.1"
+}
