@@ -28,9 +28,9 @@ import javax.ws.rs.ext.Provider;
 public class CORSFilter implements ContainerResponseFilter {
 
 	private Pattern[] MATCHING_ORIGIN_PATTERNS = new Pattern[] {
-		Pattern.compile("^http(s?)://cs5244.cs.vt.edu:8080(.*)$"),  // allow students' hosted sites
+		Pattern.compile("^http(s?)://cs5244.cs.vt.edu:(8080|8443)(.*)$"),  // allow students' hosted sites
 		Pattern.compile("^http(s?)://localhost:8081(.*)$"),  // allow local development
-		Pattern.compile("^http(s?)://localhost:8080(.*)$"),  // allow local development of combined client and server
+		Pattern.compile("^http(s?)://localhost:(8080|8443)(.*)$"),  // allow local development of combined client and server
 		//Pattern.compile("^(.*)$") // allow anything
 	};
 
