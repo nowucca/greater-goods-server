@@ -120,11 +120,6 @@ public class DefaultOrderService implements OrderService {
 				throw new ApiException.InvalidParameter("Invalid category");
 			}
 		});
-
-		// Check claimed total against computed total
-		if(cart.getTotal() != cart.getComputedSubtotal() + cart.getSurcharge()) {
-			throw new ApiException.AuthenticationFailure.InvalidParameter("Payment mismatch");
-		};
 	}
 
 	private static Pattern SIMPLE_EMAIL_REGEX = Pattern.compile("^\\S+@\\S+$");
