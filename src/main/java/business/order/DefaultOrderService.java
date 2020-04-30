@@ -104,7 +104,7 @@ public class DefaultOrderService implements OrderService {
 	private void validateCart(ShoppingCart cart) {
 		// Ensure we can load up products, validate quantity of products
 		cart.getItems().forEach(item-> {
-			if (item.getQuantity() < 0 || item.getQuantity() > 99) {
+			if (item.getQuantity() <= 0 || item.getQuantity() > 99) {
 				throw new ApiException.InvalidParameter("Invalid quantity");
 			}
 			ProductForm productRequested = item.getProductForm();
@@ -128,7 +128,8 @@ public class DefaultOrderService implements OrderService {
 		return !SIMPLE_EMAIL_REGEX.matcher(email).matches();
 	}
 
-	private long performPlaceOrderTransaction(String name, String address, String phone, String email,
+	private long performPlaceOrderTransaction(String name, String address,
+											  String phone, String email,
 											  String ccNumber, ShoppingCart cart,
 											  Connection connection) {
         try {
