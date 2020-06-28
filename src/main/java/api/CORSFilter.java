@@ -59,12 +59,12 @@ public class CORSFilter implements ContainerResponseFilter {
 					System.out.printf("CORSFilter: failed to match originFromRequest=%s\n", originFromRequest);
 					handleNonMatchingOrigin(requestContext, responseContext, originFromRequest);
 				} else {
-					System.out.printf("CORSFilter: matched originFromRequest=%s matchingOrigin=%s", originFromRequest, matchingOrigin);
+					System.out.printf("CORSFilter: matched originFromRequest=%s matchingOrigin=%s\n", originFromRequest, matchingOrigin);
 					handleMatchingOrigin(requestContext, responseContext, matchingOrigin);
 				}
 			}
 		} catch(Exception e)  {
-			System.out.printf("Unexpected problem evaluating the nature of a possible CORS request: %s", e);
+			System.out.printf("Unexpected problem evaluating the nature of a possible CORS request: %s\n", e);
 			e.printStackTrace(System.out);
 		}
 	}

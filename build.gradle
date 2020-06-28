@@ -9,10 +9,8 @@ repositories {
 }
 
 dependencies {
-    ext.tomcatVersion = '9.0.20'
+    ext.tomcatVersion = '9.0.35'
     ext.slf4jVersion = '1.7.26'
-    ext.jacksonVersion = '2.8.4'
-    ext.jerseyVersion = '2.25.1'
     ext.guavaVersion = '28.0-jre'
     ext.taglibVersion = '1.2.5'
     ext.mySqlConnectorVersion = '8.0.16'
