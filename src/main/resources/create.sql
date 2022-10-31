@@ -2,7 +2,7 @@
 -- EXECUTE THIS SCRIPT FROM THE COMMAND LINE
 -- USING AN ADMINISTRATIVE MYSQL USER.
 --
---   $ mysql -u root -p < grocery-create.sql
+--   $ mysql -u root -p < create.sql
 --
 -- Creates a database and a user with all privileges
 -- on that database for the project.
