@@ -3,19 +3,20 @@ plugins {
     id 'war'
 }
 
-sourceCompatibility = 11
+sourceCompatibility = 17
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    ext.tomcatVersion = '9.0.65'
+    ext.tomcatVersion = '9.0.73'
     ext.slf4jVersion = '1.7.26'
     ext.jacksonVersion = '2.8.4'
-    ext.jerseyVersion = '2.37'
+    ext.jerseyVersion = '2.39'
     ext.guavaVersion = '31.1-jre'
     ext.taglibVersion = '1.2.5'
-    ext.mySqlConnectorVersion = '8.0.31'
+    ext.mySqlConnectorVersion = '8.0.32'
 
 
     // Using sfl4j allows us to replace different loggers later, if desired
@@ -38,16 +39,16 @@ dependencies {
     implementation group: 'com.mysql', name: 'mysql-connector-j', version: "$mySqlConnectorVersion"
 
 
-    ext.webDriverManagerVersion = '5.3.0'
-    ext.seleniumJavaVersion = '4.5.3'
-    ext.junitVersion = '4.12'
+    ext.webDriverManagerVersion = '5.3.2'
+    ext.seleniumJavaVersion = '4.8.1'
+    ext.junitVersion = '4.13.2'
 
     // These let us run tests using web driver / selenium testing.
     testImplementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: "$webDriverManagerVersion"
     testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: "$seleniumJavaVersion"
     testImplementation group: 'junit', name: 'junit', version: "$junitVersion"
 
-    ext.jacksonVersion = '2.13.4'
+    ext.jacksonVersion = '2.13.5'
 
     //Jersey / JSON REST service dependencies
     implementation group: 'com.fasterxml.jackson.core', name:'jackson-core', version:"$jacksonVersion"
