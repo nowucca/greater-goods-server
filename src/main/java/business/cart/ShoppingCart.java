@@ -2,6 +2,7 @@ package business.cart;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
@@ -21,7 +22,8 @@ public class ShoppingCart {
 
 	private int total;
 
-	private List<ShoppingCartItem> items;
+	@JsonProperty("itemArray")
+    private List<ShoppingCartItem> items;
 
 	public ShoppingCart() {
 	}
