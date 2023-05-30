@@ -9,11 +9,13 @@ import business.order.OrderService;
 import business.product.Product;
 import business.product.ProductDao;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Context;
 import java.util.Collection;
 import java.util.List;
+
+import static jakarta.ws.rs.core.MediaType.*;
 
 @ApplicationPath("/")
 @Path("/")
@@ -26,7 +28,7 @@ public class ApiResource {
 
     @GET
     @Path("categories")
-    @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
     public Collection<Category> categories(@Context HttpServletRequest httpRequest) {
         try {
             return categoryDao.findAll();
@@ -37,7 +39,7 @@ public class ApiResource {
 
     @GET
     @Path("products/category")
-    @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
     public List<Product> productsByCategoryName(@QueryParam("name") @DefaultValue("Dairy") String categoryName,
                                                 @Context HttpServletRequest httpRequest) {
         try {
@@ -59,7 +61,7 @@ public class ApiResource {
 
     @GET
     @Path("products/specials")
-    @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
     public List<Product> specialProducts(@Context HttpServletRequest request) {
         try {
             return productDao.findSpecials();
@@ -72,8 +74,8 @@ public class ApiResource {
 
     @POST
     @Path("orders")
-	@Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
-    @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+	@Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
     public OrderDetails placeOrder(OrderForm orderForm) {
 
 		try {

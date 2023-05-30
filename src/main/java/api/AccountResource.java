@@ -2,7 +2,7 @@ package api;
 
 import business.account.LoginForm;
 import business.account.LoginDetails;
-import javax.ws.rs.*;
+import jakarta.ws.rs.*;
 
 @ApplicationPath("/")
 @Path("/account")
@@ -10,8 +10,8 @@ public class AccountResource {
 
 	@POST
 	@Path("login")
-	@Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
-	@Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+	@Consumes(jakarta.ws.rs.core.MediaType.APPLICATION_JSON)
+	@Produces(jakarta.ws.rs.core.MediaType.APPLICATION_JSON)
 	public LoginDetails login(LoginForm loginForm) {
 
 		//TODO - validate login form against a customer store

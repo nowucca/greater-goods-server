@@ -9,16 +9,13 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    guavaVersion = '31.1-jre'
+    slf4jVersion = '1.7.26'
+    junitVersion = '5.9.2'
+}
+
 dependencies {
-    ext.tomcatVersion = '9.0.73'
-    ext.slf4jVersion = '1.7.26'
-    ext.jacksonVersion = '2.8.4'
-    ext.jerseyVersion = '2.39'
-    ext.guavaVersion = '31.1-jre'
-    ext.taglibVersion = '1.2.5'
-    ext.mySqlConnectorVersion = '8.0.32'
-
-
     // Using sfl4j allows us to replace different loggers later, if desired
     implementation group: 'org.slf4j', name:'slf4j-api', version: "$slf4jVersion"
 
@@ -29,36 +26,25 @@ dependencies {
     // These are for model object caching in the dao layer
     implementation group: 'com.google.guava', name: 'guava', version: "$guavaVersion"
 
-    // These declare dependencies on tomcat libraries, letting us use container code.
-    // These may be necessary if we want to run tomcat using a plugin in future.
-    implementation group: 'org.apache.tomcat', name: 'tomcat-catalina', version: "$tomcatVersion"
+    // For the platform using Jersey over MySQL
+    compileOnly('jakarta.json.bind:jakarta.json.bind-api:3.0.0')
+    compileOnly('jakarta.json:jakarta.json-api:2.1.1')
+    compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
+    implementation('org.glassfish.jersey.containers:jersey-container-servlet:3.1.1')
+    implementation('org.glassfish.jersey.media:jersey-media-json-jackson:3.1.1')
+    implementation('org.glassfish.jersey.inject:jersey-hk2:3.1.1')
+    implementation('mysql:mysql-connector-java:8.0.33')
 
-    // These let us use the standard tag libraries in our JSP files.
-    implementation group: 'org.apache.taglibs', name: 'taglibs-standard-spec', version: "$taglibVersion"
-    implementation group: 'org.apache.taglibs', name: 'taglibs-standard-impl', version: "$taglibVersion"
-    implementation group: 'com.mysql', name: 'mysql-connector-j', version: "$mySqlConnectorVersion"
+    // For JSON serialization/deserialization
+    implementation('com.fasterxml.jackson.core:jackson-core:2.15.1')
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.15.1')
+    implementation('com.fasterxml.jackson.core:jackson-annotations:2.15.1')
+    implementation('com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.15.1')
+    implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.1')
 
-
-    ext.webDriverManagerVersion = '5.3.2'
-    ext.seleniumJavaVersion = '4.8.1'
-    ext.junitVersion = '4.13.2'
-
-    // These let us run tests using web driver / selenium testing.
-    testImplementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: "$webDriverManagerVersion"
-    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: "$seleniumJavaVersion"
-    testImplementation group: 'junit', name: 'junit', version: "$junitVersion"
-
-    ext.jacksonVersion = '2.13.5'
-
-    //Jersey / JSON REST service dependencies
-    implementation group: 'com.fasterxml.jackson.core', name:'jackson-core', version:"$jacksonVersion"
-    implementation group: 'com.fasterxml.jackson.core', name:'jackson-databind', version:"$jacksonVersion"
-    implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version:"$jacksonVersion"
-    implementation group: 'org.glassfish.jersey.containers', name:'jersey-container-servlet', version:"$jerseyVersion"
-    implementation group: 'org.glassfish.jersey.media', name:'jersey-media-json-jackson', version:"$jerseyVersion"
-    implementation group: 'org.glassfish.jersey.core', name:'jersey-server', version:"$jerseyVersion"
-    implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: "$jerseyVersion"
-    implementation group: 'javax.ws.rs', name:'javax.ws.rs-api', version:'2.0.1'
+    // For viewing the database using a JSP
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
 
     // JAX-B dependencies for JDK 9+
     implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
@@ -66,4 +52,14 @@ dependencies {
     implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.2.11'
     implementation group: 'javax.activation', name: 'activation', version: '1.1.1'
 
+    // For testing
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+
+
+}
+
+test {
+    useJUnitPlatform()
 }
